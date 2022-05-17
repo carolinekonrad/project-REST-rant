@@ -2,8 +2,11 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
+//Express settings
+app.set('views', __dirname + '/views')
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
+app.use(express.static('public'))
 
 //Import places controller
 app.use('/places', require('./controllers/places'))
