@@ -24,7 +24,11 @@ function index(data){
                     {placesFormatted}
                 </div>
             </main>
+            <div className="newButton">
+                <a href="/places/new"><button>Add a new place</button></a>
+            </div>
         </Def>
+
     )
 }
 

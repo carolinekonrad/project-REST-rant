@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
 
 //POST /place
 router.post('/', (req, res) => {
-  console.log(req.body)
   if (!req.body.pic) {
     //default image if one not provided
     req.body.pic = 'http://placekitten.com/400/400'
