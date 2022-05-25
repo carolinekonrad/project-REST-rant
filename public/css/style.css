@@ -9,11 +9,14 @@ main {
     background-color: white;
 }
 
-h1 {
+h1{
     text-align: center;
     color: cornflowerblue;
 }
-
+h2 {
+    text-align: center;
+    color: lightskyblue;
+}
 img {
     max-width: 50%;
 }
