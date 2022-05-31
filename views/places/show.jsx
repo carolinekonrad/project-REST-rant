@@ -2,6 +2,24 @@ const React = require('react')
 const Def = require('../default')
 
 function show (data) {
+    let comments = (
+        <h3 className='inactive'>No comments yet!</h3>
+    )
+
+    if (data.place.comments.length) {
+        comments = data.place.comments.map(c => {
+            return (
+                <div className='border'>
+                    <h2>{c.rant ? 'Rant!' : 'Rave!'}</h2>
+                    <h4>{c.content}</h4>
+                    <h3>
+                        <strong>- {c.author}</strong>
+                    </h3>
+                    <h4>Rating: {c.stars}</h4>
+                </div>
+            )
+        })
+    }
     return (
         <Def>
           <main>
@@ -45,9 +63,33 @@ function show (data) {
             </div>
             <hr />
             <h2>Comments</h2>
-                <h3 className="inactive">
-                    No comments yet!
-                </h3>
+                {comments}
+            <h2>Got your own Rant or Rave?</h2>
+            <form action={`/places/${data.place.id}/comment`} method="POST">
+                <div className="row">
+                    <div className="form-group col-sm-12">
+                    <label>Comments</label>
+                    <input type="text" name="content" id="content" className="form-control"></input>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="form-group col-sm-4">
+                        <label>Your Name</label>
+                        <input type="text" name="author" id="author" className="form-control"></input>
+                    </div>
+                    <div className="form-group col-sm-4">
+                        <label>Star Rating</label>
+                        <input type="range" step="0.5" min="1" max="5" id="stars" name="stars" className='form-control'></input>
+                    </div>
+                    <div className='form-group col-sm-4'>
+                        <label>Rant?</label>
+                        <input type="checkbox" id="rant" name="rant" className='form-control form-check-input'></input>
+                    </div>
+                    <br />
+                </div>
+                <input type="submit" className="btn btn=primary" value="Add Comment"></input>
+            </form>         
           </main>
         </Def>
     )
